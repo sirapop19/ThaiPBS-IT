@@ -72,4 +72,3 @@ node_modules/
 
 # Ignore large local assets
 .DS_Store
-public/video/
