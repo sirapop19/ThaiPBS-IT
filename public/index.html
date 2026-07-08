@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="th" class="dark-theme">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>อีสานแล้ง VS น้ำท่วม</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="stylesheet" href="styles.css">    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://d3js.org/d3.v7.min.js"></script>  
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+
+<body class="dark-theme">
+    <div id="weather-overlay"></div>
+    <div class="weather-toggle-topright">
+        <button id="weather-toggle-btn" class="toggle-control-btn" title="Toggle Weather Effect">🌧️</button>
+    </div>
+    
+    <header class="hero-section">
+        <video autoplay muted loop id="hero-video-bg">
+            <source src="video/CL3.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div> 
+        <div class="hero-content">
+            <h1 style="font-size: clamp(3rem, 8vw, 7rem); line-height: 1.5; padding-top: 10px;">อีสานแล้ง VS น้ำท่วม</h1>            <h3 style="color: #a8a8ff; margin: 15px 0;">ถอดรหัสวิกฤตน้ำท่วมลุ่มน้ำชี-มูล</h3>
+            <p class="hero-desc">10 ปีผ่านไป...ทำไมแผ่นดินที่ราบสูงของคนน้ำ? ร่วมสำรวจรากเหง้าของปัญหา หาทางออกที่ทุกคนมีส่วนร่วม</p>
+            <button class="scroll-down-btn">เริ่มต้นการสำรวจ</button>
+        </div>
+    </header> 
+
+    <section id="section-1" class="story-section interactive-map-section">
+    <!-- 1. ส่วนหัวและ Timeline -->
+    <div class="section-header-dark">
+        <div class="container">
+            <h3>ภาพรวมของเหตุการณ์น้ำท่วมในแต่ละปี</h3>
+            <p style="text-align: center; color: var(--text-muted); margin: 20px 0 30px 0; font-size: 0.9rem; letter-spacing: 1px;">
+                เลือกปีเพื่อดูความเปลี่ยนแปลงของสถานการณ์น้ำและพื้นที่ได้รับผลกระทบ
+            </p>
+            <div id="timeline-slider"></div>
+        </div>
+    </div>
+    
+    <div class="container map-data-container">
+        <div class="map-vertical-layout" style="display: flex; flex-direction: column; gap: 30px; width: 100%;">
+            <div class="svg-map-wrapper" style="width: 100%; display: flex; justify-content: center; position: relative;">    
+                <div id="thailand-d3-map" style="width: 100%; height: 650px; min-height: 650px; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));"></div>
+            </div>
+            
+            <div class="basin-info-container" style="width: 100%; max-width: 900px; margin: 0 auto;">
+                <div id="basin-data-callout" class="panel-box" style="background: rgba(30, 25, 48, 0.85); padding: 35px; border-radius: 20px; border-top: 5px solid var(--accent); box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
+                    <h4 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 10px; text-align: center;">📊 แผนที่สถานการณ์น้ำและงบประมาณแผ่นดิน</h4>
+                    <p style="font-size: 1.1rem; color: #e2e8f0; text-align: center; margin-bottom: 0;">👆 เลือกปีบนแกน Timeline ด้านบน จากนั้นคลิกจังหวัดใดก็ได้บนแผนที่เพื่อเปิดดูสถิติความเสียหายรายปีและงบประมาณจัดการน้ำ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="story-section media-clip-section">
+        <div class="container" style="margin-top: 80px; margin-bottom: 40px; position: relative; z-index: 15;">
+            <div class="panel-box" style="background: linear-gradient(180deg, rgba(30, 25, 48, 0.9) 0%, rgba(11, 10, 16, 0.95) 100%); padding: 40px; border-radius: 20px; border: 1px solid rgba(255, 93, 160, 0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.6);">
+                
+                <h3 style="text-align: center; color: white; font-size: 2.2rem; margin-bottom: 5px;">ปี 2567 ภาคไหนได้งบแก้ปัญหาน้ำท่วมมากที่สุด?</h3>
+                <p style="text-align: center; color: var(--text-muted); font-size: 1rem; margin-bottom: 40px;">เปรียบเทียบสัดส่วนงบประมาณแผ่นดินเพื่อการจัดการน้ำท่วม (รวมมูลค่ากว่า 53,377 ล้านบาท)</p>
+                
+                <div class="budget-ranking-list" style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="budget-item isan-highlight" style="background: rgba(255, 0, 85, 0.1); padding: 15px 20px; border-radius: 12px; border-left: 5px solid #FF0055;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; align-items: flex-end;">
+                            <span style="color: #fff; font-size: 1.2rem; font-weight: 600;">1. ภาคตะวันออกเฉียงเหนือ</span>
+                            <span style="color: #FF8DA0; font-size: 1.4rem; font-weight: 800;">30.85% <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-muted);">(16,468 ล้านบาท)</span></span>
+                        </div>
+                        <div style="width: 100%; background: rgba(255,255,255,0.05); height: 12px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 30.85%; background: linear-gradient(90deg, #FF5DA0, #FF0055); height: 100%; border-radius: 10px; box-shadow: 0 0 10px #FF0055;"></div>
+                        </div>
+                    </div>
+
+                    <div class="budget-item" style="padding: 5px 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; align-items: flex-end;">
+                            <span style="color: #e2e8f0; font-size: 1rem;">2. ภาคกลาง</span>
+                            <span style="color: #9471FF; font-size: 1.1rem; font-weight: 600;">27.82% <span style="font-size: 0.85rem; font-weight: normal; color: rgba(255,255,255,0.3);">(14,849 ล้านบาท)</span></span>
+                        </div>
+                        <div style="width: 100%; background: rgba(255,255,255,0.05); height: 8px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 27.82%; background: #9471FF; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="budget-item" style="padding: 5px 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; align-items: flex-end;">
+                            <span style="color: #e2e8f0; font-size: 1rem;">3. ภาคใต้</span>
+                            <span style="color: #60A5FA; font-size: 1.1rem; font-weight: 600;">13.84% <span style="font-size: 0.85rem; font-weight: normal; color: rgba(255,255,255,0.3);">(7,385 ล้านบาท)</span></span>
+                        </div>
+                        <div style="width: 100%; background: rgba(255,255,255,0.05); height: 8px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 13.84%; background: #60A5FA; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="budget-item" style="padding: 5px 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; align-items: flex-end;">
+                            <span style="color: #e2e8f0; font-size: 1rem;">4. ภาคเหนือ</span>
+                            <span style="color: #60A5FA; font-size: 1.1rem; font-weight: 600;">10.25% <span style="font-size: 0.85rem; font-weight: normal; color: rgba(255,255,255,0.3);">(5,473 ล้านบาท)</span></span>
+                        </div>
+                        <div style="width: 100%; background: rgba(255,255,255,0.05); height: 8px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 10.25%; background: #60A5FA; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="budget-item" style="padding: 5px 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; align-items: flex-end;">
+                            <span style="color: var(--text-muted); font-size: 0.95rem;">5-7. กรุงเทพฯ, ตะวันตก, ตะวันออก</span>
+                            <span style="color: var(--text-muted); font-size: 1rem;">เฉลี่ย 4-7%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: right; margin-top: 30px;">
+                    <a href="https://rocketmedialab.co/flood-budget/" target="_blank" rel="noopener" style="font-size: 0.85rem; color: rgba(255,255,255,0.4); text-decoration: none; border-bottom: 1px dotted rgba(255,255,255,0.4); transition: 0.3s;" onmouseover="this.style.color='var(--accent)'; this.style.borderColor='var(--accent)';" onmouseout="this.style.color='rgba(255,255,255,0.4)'; this.style.borderColor='rgba(255,255,255,0.4)';">
+                        🙏 ขอขอบคุณข้อมูลและสถิติจาก Rocket Media Lab
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+            <div class="container">
+                <h2 class="section-title-center">สารคดีอุทกนคร</h2>
+                <div class="media-clip-main" style="margin: 40px auto; max-width: 850px;">
+                    <div class="video-container-premium" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 2px solid rgba(255,255,255,0.05);"> 
+                        <iframe 
+                            src="https://www.youtube.com/embed/MwZuCGuZXR8" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                            frameborder="0" 
+                            allowfullscreen="true" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+                        </iframe>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; border-radius: 25px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);"></div>
+                    </div>
+                    
+                    <p class="caption" style="text-align: center; margin-top: 20px; font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.5px;">
+                        <span style="color: var(--primary);">●</span>  สารคดีบันทึกเหตุการณ์ความจริงของอุบลราชธานี พื้นที่ปลายน้ำในภาคตะวันออกเฉียงเหนือ ของประเทศไทย ที่รับน้ำจากแม่น้ำสายหลัก ทั้ง แม่น้ำชี แม่น้ำมูล และลุ่มน้ำสาขา จนต้องเผชิญมหาอุทกภัยใหญ่ ในปี 2562 , ปี 2565 และอยู่ในภาวะเสี่ยงที่ต้องเฝ้าระวังทุกปี
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="media-photo-gallery" style="padding: 80px 0; overflow: hidden; position: relative;">
+    
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(0,0,0,0) 70%); z-index: 1; pointer-events: none;"></div>
+
+            <div class="container" style="position: relative; z-index: 2;">                
+                <div class="swiper photoSwiper" style="padding: 40px 0;">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide gallery-slide-item" onclick="openLightbox('images/water1.jpg')">
+                            <img src="images/water1.jpg" class="thumbnail-img" alt="ภาพความเสียหาย 1">
+                        </div>
+                        <div class="swiper-slide gallery-slide-item" onclick="openLightbox('images/water2.jpg')">
+                            <img src="images/water2.jpg" class="thumbnail-img" alt="ภาพความเสียหาย 2">
+                        </div>
+                        <div class="swiper-slide gallery-slide-item" onclick="openLightbox('images/water3.jpg')">
+                            <img src="images/water3.jpg" class="thumbnail-img" alt="ภาพความเสียหาย 3">
+                        </div>
+                        <div class="swiper-slide gallery-slide-item" onclick="openLightbox('images/water4.jpg')">
+                            <img src="images/water4.jpg" class="thumbnail-img" alt="ภาพความเสียหาย 4">
+                        </div>
+                        <div class="swiper-slide gallery-slide-item" onclick="openLightbox('images/water5.jpg')">
+                            <img src="images/water5.jpg" class="thumbnail-img" alt="ภาพความเสียหาย 5">
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    
+                    <div class="swiper-pagination" style="bottom: -10px !important;"></div>
+                </div>
+                
+                <p class="caption gallery-caption" style="text-align: center; color: #cbd5e1; margin-top: 25px; font-size: 0.9rem;">
+                    (คลิกที่ภาพเพื่อขยายใหญ่)
+                </p>
+            </div>
+        </div>
+
+        <script>
+        var photoSwiper = new Swiper(".photoSwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
+            allowTouchMove: true,
+            coverflowEffect: {
+            rotate: 35,
+            stretch: -15,
+            depth: 160,
+            modifier: 1,
+            slideShadows: true,
+            },
+            navigation: {
+            nextEl: ".photoSwiper .swiper-button-next",
+            prevEl: ".photoSwiper .swiper-button-prev",
+            },
+            pagination: {
+            el: ".photoSwiper .swiper-pagination",
+            clickable: true,
+            },
+        });
+        </script>
+
+        <dialog id="lightbox" style="border:none; background:rgba(0,0,0,0.9); width:100vw; height:100vh; position:fixed; top:0; left:0; cursor:pointer;" onclick="this.close()">
+            <div style="position: absolute; top: 20px; width: 100%; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; pointer-events: none; letter-spacing: 2px;">
+                คลิกที่ว่างเพื่อปิด
+            </div>
+            <img id="lightbox-img" style="max-width:90%; max-height:80%; margin:auto; display:block; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); border-radius:15px; box-shadow:0 0 50px rgba(0,0,0,0.5);">
+        </dialog>
+
+        <div class="story-section quote-section" style="background: linear-gradient(rgba(11, 10, 16, 0.85), rgba(11, 10, 16, 0.85)), url('images/water5.jpg') center/cover fixed;">
+            <div class="container">
+                <div class="quote-content" style="max-width: 900px; margin: 0 auto; text-align: center;">
+                    <div class="quote-icon" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px; opacity: 0.8;">“</div>
+                    <h4 class="quote-heading" style="text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin-bottom: 20px;">เสียงจากคนในพื้นที่</h4>
+                    <p class="quote-text" style="font-size: 1.8rem; font-weight: 300; line-height: 1.6; color: #fff; font-style: italic;">
+                        "น้ำปีนี้มาเร็วกว่าที่คิด และระดับน้ำก็สูงกว่าเมื่อสิบปีก่อนมาก"
+                    </p>
+                    <p style="margin-top: 25px; color: var(--accent); font-weight: 600; font-size: 1.1rem;">
+                        ชาวบ้าน อ.วารินชำราบ จ.อุบลราชธานี
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-2" class="story-section analysis-section">
+        <div class="container">
+            <div class="analysis-section" style="padding: 100px 20px; text-align: center;">
+                <div class="container" style="max-width: 800px; margin: 0 auto;">
+                    <div style="width: 50px; height: 3px; background: var(--accent); margin: 0 auto 30px auto;"></div>
+                    
+                    <h3 class="analysis-subtitle" style="font-size: 2.5rem; color: #fff; margin-bottom: 25px; line-height: 1.2;">
+                        ธรรมชาติเปลี่ยน หรือ <span style="color: var(--primary);">มนุษย์พลาด?</span>
+                    </h3>
+                    
+                    <p class="analysis-intro" style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; font-weight: 300;">
+                        ภาคอีสานเผชิญน้ำท่วมรุนแรงขึ้น ไม่ใช่แค่เพราะฝนมากขึ้น 
+                        แต่เพราะภูมิทัศน์และระบบจัดการน้ำไม่ทันต่อการเปลี่ยนแปลงของสภาพภูมิอากาศ
+                    </p>
+                </div>
+            </div>   
+            <div class="analysis-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 40px;">
+    
+                <div class="analysis-card" style="position: relative; border-radius: 20px; overflow: hidden; padding: 40px; min-height: 350px; background: #1a1a1a; border: 1px solid #333;">
+                    <img src="images/wetland-sponge.jpg" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
+                    <h4 class="card-heading" style="color: #fff; margin-bottom: 15px;">โครงสร้างพื้นฐานที่ไม่รองรับ</h4>
+                    <ul class="analysis-list" style="list-style: none; padding: 0; color: #ccc; line-height: 1.6;">
+                        <li>การขยายเมืองทับพื้นที่ลุ่มต่ำ <span style="color: #FF5DA0; font-weight: bold;">ลดความจุของแก้มลิงธรรมชาติ</span> รอบลุ่มน้ำชี—มูล</li>
+                    </ul>
+                </div>
+
+                <div class="analysis-card" style="position: relative; border-radius: 20px; overflow: hidden; padding: 40px; min-height: 350px; background: #1a1a1a; border: 1px solid #333;">
+                    <img src="images/rain-bomb-diagram.webp" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
+                    <h4 class="card-heading" style="color: #fff; margin-bottom: 15px;">ฝนแปรปรวนฉับพลัน</h4>
+                    <ul class="analysis-list" style="list-style: none; padding: 0; color: #ccc; line-height: 1.6;">
+                        <li>ป่าไม้ที่ลดลงทำให้ระบบระบายน้ำไม่สามารถรองรับ <span style="color: #FF5DA0; font-weight: bold;">ฝนตกหนักฉับพลัน (Rain Bomb)</span> ได้</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- <div class="data-viz-container">
+                <h2 class="section-title-center" style="margin-top: 80px;">เปรียบเทียบ: ฝน-เมือง-ภัยพิบัติ</h2>
+                <div id="data-viz-d3" class="data-viz-chart"></div>
+            </div> -->
+
+            <div class="expert-quote-section" style="padding: 60px 0; max-width: 1000px; margin: 0 auto;">
+                <h2 class="section-title-center" style="margin-bottom: 40px; color: #fff;">ฟังเสียงผู้เชี่ยวชาญ</h2>
+                
+                <div class="carousel-container-full" style="display: flex; align-items: center; gap: 20px;">
+                    <!-- <button class="carousel-nav-btn" onclick="scrollCarousel('expert-carousel', -1)" style="background: rgba(255,255,255,0.1); border:none; color:white; padding: 20px; border-radius: 50%; cursor:pointer;">◀</button> -->
+                    
+                    <div class="video-carousel-wrapper" id="expert-carousel" style="display: flex; overflow-x: auto; gap: 30px; scroll-snap-type: x mandatory; padding: 20px 0;">
+                        
+                        <div class="expert-section" style="max-width: 1000px; margin: 40px auto; padding: 20px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+
+                                <div style="background: #1a1a1a; border-radius: 20px; overflow: hidden; padding: 15px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div style="width: 100%; height: 250px; border-radius: 10px; overflow: hidden; background: #000;">
+                                        <iframe 
+                                            src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/watch/?v=1987545251661574" 
+                                            width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen="true" 
+                                            style="border:none; width:100%; height:100%;">
+                                        </iframe>
+                                    </div>
+                                    <p style="margin-top: 15px; color: #fff; font-weight: 500; font-size: 0.95rem;">รศ.ดร.เสรี ศุภาราทิตย์: เสนอแนวทางการแก้ไขผังเมืองในพื้นที่ลุ่มต่ำ</p>
+                                </div>
+
+                                <div style="background: #1a1a1a; border-radius: 20px; overflow: hidden; padding: 15px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div style="width: 100%; height: 250px; border-radius: 10px; overflow: hidden; background: #000;">
+                                        <iframe 
+                                            src="https://www.youtube.com/embed/lHgdI2wj8wo" 
+                                            width="100%" height="100%" frameborder="0" allowfullscreen="true" 
+                                            style="border:none; width:100%; height:100%;"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+                                        </iframe>
+                                    </div>
+                                    <p style="margin-top: 15px; color: #fff; font-weight: 500; font-size: 0.95rem;">โลกรวนไม่ใช่แค่อากาศร้อน</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+        <!-- <button class="carousel-nav-btn" onclick="scrollCarousel('expert-carousel', 1)" style="background: rgba(255,255,255,0.1); border:none; color:white; padding: 20px; border-radius: 50%; cursor:pointer;">▶</button> -->
+    </div>
+</div>
+        </div>
+    </section>
+            
+    <section id="section-3" class="story-section engagement-section" style="padding: 80px 20px;">
+    <div class="container" style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <h2 class="section-title-center" style="color: #fff; margin-bottom: 40px;">สถานการณ์จำลอง: 20 ด่านเอาตัวรอดจากมหาอุทกภัย</h2>
+        
+        <div id="game-box" style="background: linear-gradient(145deg, #1a1a1a, #0f0f0f); padding: 50px; border-radius: 30px; border: 1px solid #333; box-shadow: 0 15px 30px rgba(0,0,0,0.5);">
+            <div id="game-content" style="transition: opacity 0.5s ease;">
+                <p style="font-size: 1.3rem; margin-bottom: 30px; color: #eee; min-height: 80px;">
+                    "น้ำเริ่มเข้าหน้าบ้านแล้ว ระดับน้ำสูงถึงเข่า... คุณมีเวลาตัดสินใจเลือกหยิบของสำคัญ!"
+                </p>
+                <div class="choice-grid" style="display: flex; flex-direction: column; gap: 15px;">
+                    <button class="game-btn" onclick="renderScene('start')" style="padding: 20px; border-radius: 15px; border: 1px solid #444; background: #ff4d4d; color: #fff; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s;">เริ่มเกมเพื่อเริ่มภารกิจ 20 ด่าน</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const storyData = {
+        start: { text: "1/20: ฝนตกหนักติดต่อกัน 3 วัน น้ำล้นตลิ่งแม่น้ำชี! คุณจะทำอย่างไร?", options: [{ text: "💊 หยิบยา/ชุดปฐมพยาบาล", next: "q2" }, { text: "📱 เช็คข้อมูลแจ้งเตือนระดับน้ำ", next: "q2" }] },
+        q2: { text: "2/20: ระดับน้ำสูงถึงข้อเท้าแล้ว คุณต้องรีบขึ้นชั้น 2 ของบ้าน...", options: [{ text: "เดินขึ้นบันไดปกติ", next: "q3" }, { text: "สับคัตเอาท์ไฟก่อนขึ้น", next: "q3" }] },
+        q3: { text: "3/20: มืดแล้วไฟดับ! คุณมีไฟฉาย แต่แบตเหลือไม่ถึง 20%...", options: [{ text: "เปิดไฟฉายทิ้งไว้ตลอด", next: "q4" }, { text: "เปิดเฉพาะตอนจำเป็น", next: "q4" }] },
+        q4: { text: "4/20: เสียงแจ้งเตือนภัยดัง! กู้ภัยประกาศอพยพทันที...", options: [{ text: "รีบไปจุดรวมพล", next: "q5" }, { text: "ขออยู่เฝ้าบ้านต่อ", next: "game_over_drown" }] },
+        q5: { text: "5/20: ทางเดินไปจุดรวมพลเต็มไปด้วยน้ำและเศษไม้...", options: [{ text: "ลุยน้ำเดินไป", next: "q6" }, { text: "รอเรือกู้ภัย", next: "q6" }] },
+        q6: { text: "6/20: เจอสัตว์มีพิษ (งู) ว่ายน้ำมาทางคุณ!", options: [{ text: "ใช้ไม้เขี่ยออก", next: "q7" }, { text: "พยายามเดินหนี", next: "q7" }] },
+        q7: { text: "7/20: คุณมาถึงเรือกู้ภัย แต่เรือลำนี้คนเต็มเกินไปแล้ว...", options: [{ text: "ขอเบียดขึ้นไป", next: "q8" }, { text: "รอเรือเที่ยวถัดไป", next: "q8" }] },
+        q8: { text: "8/20: ระหว่างอยู่บนเรือ น้ำพัดแรงมาก เรือสั่นคลอน...", options: [{ text: "เกาะขอบเรือแน่นๆ", next: "q9" }, { text: "ยืนขึ้นเพื่อทรงตัว", next: "game_over_fall" }] },
+        q9: { text: "9/20: เพื่อนบ้านข้างๆ เริ่มเป็นตะคริวเพราะแช่น้ำนาน...", options: [{ text: "ช่วยพยุงไว้", next: "q10" }, { text: "ตะโกนเรียกกู้ภัย", next: "q10" }] },
+        q10: { text: "10/20: ครึ่งทางแล้ว! กู้ภัยต้องการแรงคนช่วยพายเรือต่อ...", options: [{ text: "ช่วยพาย", next: "q11" }, { text: "นั่งเฉยๆ ให้กู้ภัยทำ", next: "q11" }] },
+        q11: { text: "11/20: เจอสายไฟหลุดแช่อยู่ในน้ำข้างๆ เรือ!", options: [{ text: "บอกคนพายให้หลบ", next: "q12" }, { text: "ไม่สนใจ รีบไปต่อ", next: "game_over_shock" }] },
+        q12: { text: "12/20: ท้องเริ่มหิวมาก คุณมีเสบียงเพียงพอสำหรับ 1 มื้อ...", options: [{ text: "กินตอนนี้เลย", next: "q13" }, { text: "เก็บไว้มื้อหน้า", next: "q13" }] },
+        q13: { text: "13/20: พายุฝนเริ่มลงหนักอีกรอบ ทัศนวิสัยเป็นศูนย์...", options: [{ text: "หาที่หลบในเพิงริมน้ำ", next: "q14" }, { text: "ไปต่อท่ามกลางฝน", next: "q14" }] },
+        q14: { text: "14/20: เจอด่านทหารเตรียมเสบียงและผ้าห่มให้...", options: [{ text: "รับผ้าห่ม/น้ำ", next: "q15" }, { text: "รีบไปต่อไม่หยุด", next: "q15" }] },
+        q15: { text: "15/20: คุณเริ่มมีอาการไข้เพราะแช่น้ำนานเกินไป...", options: [{ text: "กินยาที่เตรียมมา", next: "q16" }, { text: "ทนเอา เดี๋ยวก็ถึง", next: "q16" }] },
+        q16: { text: "16/20: เจอนักข่าวถ่ายทำสถานการณ์น้ำท่วม คุณจะทำอย่างไร?", options: [{ text: "ขอความช่วยเหลือ", next: "q17" }, { text: "เลี่ยงไม่ให้เห็น", next: "q17" }] },
+        q17: { text: "17/20: น้ำเริ่มลดระดับลงบ้างแล้ว แต่ทางเดินเต็มไปด้วยโคลนลื่น...", options: [{ text: "เดินเท้าต่อ", next: "q18" }, { text: "รอรถยกสูงมา", next: "q18" }] },
+        q18: { text: "18/20: เห็นประกาศจากศูนย์อพยพว่าพื้นที่นี้ปลอดภัยแล้ว...", options: [{ text: "ไปที่ศูนย์ฯ", next: "q19" }, { text: "จะกลับบ้านเลย", next: "game_over_unsafe" }] },
+        q19: { text: "19/20: ถึงศูนย์อพยพแล้ว! สิ่งแรกที่ควรทำคืออะไร?", options: [{ text: "ลงทะเบียนรับความช่วยเหลือ", next: "q20" }, { text: "หาที่นอนก่อน", next: "q20" }] },
+        q20: { text: "20/20: คุณรอดมาได้! บทเรียนที่สำคัญที่สุดจากเหตุการณ์นี้คืออะไร?", options: [{ text: "การเตรียมพร้อม", next: "win" }, { text: "ความร่วมมือ", next: "win" }] },
+        
+        win: { text: "🎉 ยินดีด้วย! คุณรอดพ้นวิกฤตด้วยไหวพริบและการตัดสินใจที่ดีเยี่ยม! คุณคือ Survivor ตัวจริง", options: [{ text: "เริ่มเล่นใหม่", next: "start" }] },
+        game_over_drown: { text: "⚠️ คุณอยู่ต่อจนน้ำท่วมสูงเกินกว่าจะหนีทัน... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] },
+        game_over_fall: { text: "⚠️ เรือคว่ำ! คุณตกลงไปในน้ำเชี่ยว... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] },
+        game_over_shock: { text: "⚠️ ไฟฟ้าดูด! เพราะความประมาท... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] },
+        game_over_unsafe: { text: "⚠️ กลับบ้านเร็วเกินไป บ้านยังไม่ปลอดภัย... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] }
+    };
+
+    function renderScene(sceneId) {
+        const scene = storyData[sceneId];
+        const gameContent = document.getElementById('game-content');
+        
+        let buttonsHtml = scene.options.map(opt => 
+            `<button class="game-btn" onclick="renderScene('${opt.next}')" style="padding: 18px; border-radius: 12px; border: 1px solid #444; background: #252525; color: #fff; cursor: pointer; transition: 0.3s; width: 100%; text-align: left; font-size: 1rem;">▶ ${opt.text}</button>`
+        ).join('');
+
+        gameContent.style.opacity = 0;
+        setTimeout(() => {
+            gameContent.innerHTML = `
+                <p style="font-size: 1.3rem; margin-bottom: 30px; color: #eee; min-height: 80px;">${scene.text}</p>
+                <div class="choice-grid" style="display: flex; flex-direction: column; gap: 12px;">
+                    ${buttonsHtml}
+                </div>
+            `;
+            gameContent.style.opacity = 1;
+        }, 300);
+    }
+    </script>
+    <section id="special-docs" class="story-section" style="padding: 80px 20px;">
+        <div class="container">
+            <h2 class="section-title-center" style="margin-bottom: 50px; color: #fff;">ชุดสารคดีพิเศษเกี่ยวกับการจัดการน้ำท่วม</h2>
+
+            <div class="swiper mySwiper" style="padding: 50px 0;">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><iframe width="100%" height="250" src="https://www.youtube.com/embed/giI7iJOUxy0" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="swiper-slide"><iframe width="100%" height="250" src="https://www.youtube.com/embed/xr25zTSbc4Q" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="swiper-slide"><iframe width="100%" height="250" src="https://www.youtube.com/embed/nBnGnhttlsg" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="swiper-slide"><iframe width="100%" height="250" src="https://www.youtube.com/embed/OFkjTq93xFo" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="swiper-slide"><iframe width="100%" height="250" src="https://www.youtube.com/embed/-mDqtZeul2s" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="swiper-slide"><iframe width="100%" height="250" src="https://www.youtube.com/embed/f-gcWH-Zn08" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+                
+                <div class="swiper-button-prev" style="color: var(--primary);"></div>
+                <div class="swiper-button-next" style="color: var(--primary);"></div>
+                <div class="swiper-pagination" style="bottom: 0px !important;"></div>
+            </div>
+        </div>
+    </section>
+
+</section>
+    <footer class="site-footer" style="padding: 80px 20px; border-top: 1px solid var(--primary); background: linear-gradient(to bottom, #050505, #0a0a1a);">
+    <div class="container" style="max-width: 900px; text-align: center;">
+        
+        <h4 style="color: var(--accent); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; font-size: 1.2rem;">ทีมผู้พัฒนา</h4>
+        <div class="authors-list" style="display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; font-size: 1.2rem; font-weight: 600;">
+            <span>สิรภพ ฉัตรพูนกุล</span>
+            <span>เฉลิมเกียรติ นาริโพธิ์</span>
+            <span>ศักรินทร์ พันธ์น้อย</span>
+        </div>
+
+        <div class="logo-partners" style="display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 40px;">
+            <img src="images/logo_it_msu.png" height="50" style="opacity: 0.7; transition: 0.3s;">
+            <img src="images/logo_msu.png" height="50" style="opacity: 0.7; transition: 0.3s;">
+            <img src="images/logo_thaipbs.png" height="50" style="opacity: 0.7; transition: 0.3s;">
+            <img src="images/logo_thaipbs_locals.png" height="50" style="opacity: 0.7; transition: 0.3s;">
+        </div>
+
+        <div style="color: var(--text-muted); font-size: 0.9rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+            <p style="margin-bottom: 15px;">ศูนย์สร้างสรรค์สื่อเพื่อสาธารณะ มหาวิทยาลัยมหาสารคาม ร่วมกับ สำนักเครือข่ายและการมีส่วนร่วมสาธารณะ ไทยพีบีเอส</p>
+            <p style="color: rgba(255,255,255,0.3); font-size: 0.8rem;">&copy; 2026 Longform Article Project</p>
+        </div>
+    </div>
+</footer>
+    <script>
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        },
+        coverflowEffect: {
+        rotate: 40,
+        stretch: 0,
+        depth: 150,
+        modifier: 1,
+        slideShadows: true,
+        },
+        loop: true,
+    });
+    </script>
+    <style>
+        .swiper-slide {
+            width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+    <script src="script.js"></script>
+</body>
+</html>
