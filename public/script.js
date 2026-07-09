@@ -212,7 +212,7 @@ function renderThailandMap() {
         });
     }
 
-    d3.json("https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json")
+    d3.json("https://cdn.jsdelivr.net/gh/apisit/thailand.json@master/thailand.json")
     .then(function(topoData) {
         
         // 💡 กรองวาดเฉพาะภาคอีสาน (ดึงเฉพาะ Feature ที่หาชื่อเจอในฐานข้อมูล 20 จังหวัดของเรา)
