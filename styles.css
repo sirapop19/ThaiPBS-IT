@@ -449,7 +449,7 @@ footer p {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     border-radius: 15px;
     overflow: hidden;
-    flex: 0 0 300px; /* ขนาดกว้างของรูป */
+    flex: 0 0 300px;
 }
 
 .gallery-slide-item:hover {
@@ -495,7 +495,6 @@ dialog::backdrop {
     flex-wrap: wrap;
 }
 
-/* ปรับโลโก้ให้เรียงสวยและมีขนาดสม่ำเสมอ */
 .logo-partners {
     display: flex;
     justify-content: center;
@@ -505,7 +504,7 @@ dialog::backdrop {
 }
 
 .partner-logo {
-    height: 45px; /* ปรับความสูงให้เท่ากัน */
+    height: 45px;
     width: auto;
     filter: grayscale(1) brightness(0.8);
     transition: all 0.4s ease;
@@ -529,13 +528,11 @@ dialog::backdrop {
     overflow: hidden;
 }
 
-/* เพิ่มเอฟเฟกต์ Fade-in ให้ข้อความ */
 .quote-text {
     transition: opacity 1s ease;
     text-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
-/* ทำให้คำพูดดูลอยเด่น */
 .quote-content {
     background: rgba(255, 255, 255, 0.03);
     padding: 50px;
@@ -544,12 +541,10 @@ dialog::backdrop {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* ซ่อน Scrollbar ของ Carousel เพื่อความคลีน */
 .video-carousel-wrapper::-webkit-scrollbar {
     display: none;
 }
 
-/* เอฟเฟกต์การ์ดวิดีโอ */
 .video-carousel-item {
     transition: transform 0.3s ease;
     border: 1px solid rgba(255,255,255,0.05);
@@ -566,7 +561,7 @@ dialog::backdrop {
 
 .video-container {
     width: 100%;
-    height: 250px; /* ล็อกความสูงไว้เท่ากันทุกการ์ด */
+    height: 250px;
     overflow: hidden;
     position: relative;
     border-radius: 15px;
@@ -576,7 +571,7 @@ dialog::backdrop {
 .video-container iframe {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* บังคับวิดีโอให้เต็มพื้นที่โดยไม่ผิดสัดส่วน */
+    object-fit: cover;
 }
 
 .game-btn {
@@ -640,11 +635,14 @@ dialog::backdrop {
 
 .photoSwiper {
     width: 100%;
-    overflow: visible !important; /* เปิดเพื่อให้เห็นการ์ดด้านข้างทะลุขอบออกไปอย่างสวยงาม */
+    max-width: 850px;
+    margin: 0 auto;
+    overflow: visible !important;
   }
+  
   .photoSwiper .gallery-slide-item {
-    width: 420px; /* ความกว้างของการ์ดแต่ละใบ */
-    height: 280px; /* ความสูงของการ์ด */
+    width: 400px;
+    height: 280px; 
     border-radius: 16px;
     overflow: hidden;
     background: #000;
@@ -653,41 +651,49 @@ dialog::backdrop {
     cursor: pointer;
     transition: border-color 0.4s ease, box-shadow 0.4s ease;
   }
-  /* ไฮไลต์ขอบเรืองแสงสำหรับการ์ดที่อยู่ตรงกลางหน้าจอพอดี */
+  
   .photoSwiper .swiper-slide-active {
     border-color: #3b82f6 !important; 
     box-shadow: 0 25px 50px rgba(59, 130, 246, 0.25) !important;
   }
+  
   .photoSwiper .thumbnail-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  /* ออกแบบปุ่มนำทางสไตล์มินิมอลโปร่งแสง */
+  
   .photoSwiper .swiper-button-next, 
   .photoSwiper .swiper-button-prev {
-    color: #3b82f6 !important;
-    background: rgba(5, 5, 5, 0.7);
-    width: 45px;
-    height: 45px;
+    color: #ffffff !important;
+    background: rgba(30, 58, 138, 0.9) !important;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.5);
     backdrop-filter: blur(4px);
     transition: all 0.3s ease;
   }
+  
+  .photoSwiper .swiper-button-prev {
+    left: -70px !important;
+  }
+  .photoSwiper .swiper-button-next {
+    right: -70px !important;
+  }
+
   .photoSwiper .swiper-button-next:after, 
   .photoSwiper .swiper-button-prev:after {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: bold;
   }
+  
   .photoSwiper .swiper-button-next:hover, 
   .photoSwiper .swiper-button-prev:hover {
-    background: #3b82f6;
-    color: #ffffff !important;
+    background: #3b82f6 !important;
     box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-    border-color: #3b82f6;
   }
-  /* ดีไซน์จุดบอกสถานะ (Pagination Indicators) */
+  
   .photoSwiper .swiper-pagination-bullet {
     background: #f8fafc !important;
     opacity: 0.3;
@@ -696,8 +702,13 @@ dialog::backdrop {
   .photoSwiper .swiper-pagination-bullet-active {
     background: #3b82f6 !important;
     opacity: 1;
-    width: 22px; /* ดึงจุดให้ยาวขึ้นเมื่อแอคทีฟ เพิ่มความโมเดิร์น */
+    width: 22px; 
     border-radius: 6px;
+  }
+
+  @media (max-width: 992px) {
+    .photoSwiper .swiper-button-prev { left: 10px !important; }
+    .photoSwiper .swiper-button-next { right: 10px !important; }
   }
 
   .gallery-slide-item {
