@@ -13,6 +13,7 @@
           "backdrop-filter"
         ]
       }
-    ]
+    ],
+    "css-prefix-order": "off"
   }
 }

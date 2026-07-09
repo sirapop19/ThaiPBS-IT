@@ -26,7 +26,8 @@
         </video>
         <div class="hero-overlay"></div> 
         <div class="hero-content">
-            <h1 style="font-size: clamp(3rem, 8vw, 7rem); line-height: 1.5; padding-top: 10px;">อีสานแล้ง VS น้ำท่วม</h1>            <h3 style="color: #a8a8ff; margin: 15px 0;">ถอดรหัสวิกฤตน้ำท่วมลุ่มน้ำชี-มูล</h3>
+            <h1 style="font-size: clamp(3rem, 8vw, 7rem); line-height: 1.5; padding-top: 10px;">อีสานแล้ง VS น้ำท่วม</h1>
+            <h3 style="color: #a8a8ff; margin: 15px 0;">ถอดรหัสวิกฤตน้ำท่วมลุ่มน้ำชี-มูล</h3>
             <p class="hero-desc">10 ปีผ่านไป...ทำไมแผ่นดินที่ราบสูงของคนน้ำ? ร่วมสำรวจรากเหง้าของปัญหา หาทางออกที่ทุกคนมีส่วนร่วม</p>
             <button class="scroll-down-btn">เริ่มต้นการสำรวจ</button>
         </div>
@@ -183,28 +184,28 @@
 
         <script>
         var photoSwiper = new Swiper(".photoSwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            loop: true,
-            allowTouchMove: true,
-            coverflowEffect: {
-            rotate: 35,
-            stretch: -15,
-            depth: 160,
-            modifier: 1,
-            slideShadows: true,
-            },
-            navigation: {
-            nextEl: ".photoSwiper .swiper-button-next",
-            prevEl: ".photoSwiper .swiper-button-prev",
-            },
-            pagination: {
-            el: ".photoSwiper .swiper-pagination",
-            clickable: true,
-            },
-        });
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    loop: true,
+    allowTouchMove: true,
+    coverflowEffect: {
+        rotate: 45,
+        stretch: -20,
+        depth: 250,
+        modifier: 1,
+        slideShadows: true,
+    },
+    navigation: {
+        nextEl: ".photoSwiper .swiper-button-next",
+        prevEl: ".photoSwiper .swiper-button-prev",
+    },
+    pagination: {
+        el: ".photoSwiper .swiper-pagination",
+        clickable: true,
+    },
+});
         </script>
 
         <dialog id="lightbox" style="border:none; background:rgba(0,0,0,0.9); width:100vw; height:100vh; position:fixed; top:0; left:0; cursor:pointer;" onclick="this.close()">
