@@ -17,18 +17,18 @@
 <body class="dark-theme">
     <div id="weather-overlay"></div>
     <div class="weather-toggle-topright">
-        <button id="weather-toggle-btn" class="toggle-control-btn" title="Toggle Weather Effect">🌧️</button>
+         <button id="weather-toggle-btn" class="toggle-control-btn" title="Toggle Weather Effect">🌧️</button>
     </div>
     
     <header class="hero-section">
-        <video autoplay muted loop id="hero-video-bg">
-            <source src="video/CL3.mp4" type="video/mp4">
+        <video autoplay muted loop id="hero-video-bg" style="display: none;">
+            <source src="https://media.giphy.com/media/l0HlGy9x8FZo0XO1i/giphy.mp4" type="video/mp4">
         </video>
-        <div class="hero-overlay"></div> 
+        <div class="hero-overlay" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);"></div> 
         <div class="hero-content">
             <h1 style="font-size: clamp(3rem, 8vw, 7rem); line-height: 1.5; padding-top: 10px;">อีสานแล้ง VS น้ำท่วม</h1>
             <h3 style="color: #a8a8ff; margin: 15px 0;">ถอดรหัสวิกฤตน้ำท่วมลุ่มน้ำชี-มูล</h3>
-            <p class="hero-desc">10 ปีผ่านไป...ทำไมแผ่นดินที่ราบสูงของคนน้ำ? ร่วมสำรวจรากเหง้าของปัญหา หาทางออกที่ทุกคนมีส่วนร่วม</p>
+             <p class="hero-desc">10 ปีผ่านไป...ทำไมแผ่นดินที่ราบสูงของคนน้ำ? ร่วมสำรวจรากเหง้าของปัญหา หาทางออกที่ทุกคนมีส่วนร่วม</p>
             <button class="scroll-down-btn">เริ่มต้นการสำรวจ</button>
         </div>
     </header> 
@@ -39,7 +39,7 @@
         <div class="container">
             <h3>ภาพรวมของเหตุการณ์น้ำท่วมในแต่ละปี</h3>
             <p style="text-align: center; color: var(--text-muted); margin: 20px 0 30px 0; font-size: 0.9rem; letter-spacing: 1px;">
-                เลือกปีเพื่อดูความเปลี่ยนแปลงของสถานการณ์น้ำและพื้นที่ได้รับผลกระทบ
+                 เลือกปีเพื่อดูความเปลี่ยนแปลงของสถานการณ์น้ำและพื้นที่ได้รับ
             </p>
             <div id="timeline-slider"></div>
         </div>
@@ -53,8 +53,8 @@
             
             <div class="basin-info-container" style="width: 100%; max-width: 900px; margin: 0 auto;">
                 <div id="basin-data-callout" class="panel-box" style="background: rgba(30, 25, 48, 0.85); padding: 35px; border-radius: 20px; border-top: 5px solid var(--accent); box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
-                    <h4 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 10px; text-align: center;">📊 แผนที่สถานการณ์น้ำและงบประมาณแผ่นดิน</h4>
-                    <p style="font-size: 1.1rem; color: #e2e8f0; text-align: center; margin-bottom: 0;">👆 เลือกปีบนแกน Timeline ด้านบน จากนั้นคลิกจังหวัดใดก็ได้บนแผนที่เพื่อเปิดดูสถิติความเสียหายรายปีและงบประมาณจัดการน้ำ</p>
+                    <h4 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 10px; text-align: center;">📊 แผนที่สถานการณ์น้ำและงบประมาณ</h4>
+                    <p style="font-size: 1.1rem; color: #e2e8f0; text-align: center; margin-bottom: 0;">👆 เลือกปีบนแกน Timeline ด้านบน จากนั้นคลิกบนแต่ละลุ่มน้ำเพื่อดูรายละเอียด</p>
                 </div>
             </div>
         </div>
@@ -124,7 +124,7 @@
             </div>
         </div>
     </div>
- 
+  
             <div class="container">
                 <h2 class="section-title-center">สารคดีอุทกนคร</h2>
                 <div class="media-clip-main" style="margin: 40px auto; max-width: 850px;">
@@ -140,7 +140,7 @@
                     </div>
                     
                     <p class="caption" style="text-align: center; margin-top: 20px; font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.5px;">
-                        <span style="color: var(--primary);">●</span>  สารคดีบันทึกเหตุการณ์ความจริงของอุบลราชธานี พื้นที่ปลายน้ำในภาคตะวันออกเฉียงเหนือ ของประเทศไทย ที่รับน้ำจากแม่น้ำสายหลัก ทั้ง แม่น้ำชี แม่น้ำมูล และลุ่มน้ำสาขา จนต้องเผชิญมหาอุทกภัยใหญ่ ในปี 2562 , ปี 2565 และอยู่ในภาวะเสี่ยงที่ต้องเฝ้าระวังทุกปี
+                        <span style="color: var(--primary);">●</span>  สารคดีบันทึกเหตุการณ์ความจริงของอุบลราชธานี
                     </p>
                 </div>
             </div>
@@ -148,7 +148,7 @@
 
         <div class="media-photo-gallery" style="padding: 80px 0; overflow: hidden; position: relative;">
     
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(0,0,0,0) 70%); z-index: 1; pointer-events: none;"></div>
+             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(139, 92, 246, 0.12) 100%); filter: blur(80px);"></div>
 
             <div class="container" style="position: relative; z-index: 2;">                
                 <div class="swiper photoSwiper" style="padding: 40px 0;">
@@ -210,21 +210,21 @@
 
         <dialog id="lightbox" style="border:none; background:rgba(0,0,0,0.9); width:100vw; height:100vh; position:fixed; top:0; left:0; cursor:pointer;" onclick="this.close()">
             <div style="position: absolute; top: 20px; width: 100%; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; pointer-events: none; letter-spacing: 2px;">
-                คลิกที่ว่างเพื่อปิด
+                 คลิกที่ว่างเพื่อปิด
             </div>
-            <img id="lightbox-img" style="max-width:90%; max-height:80%; margin:auto; display:block; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); border-radius:15px; box-shadow:0 0 50px rgba(0,0,0,0.5);">
+             <img id="lightbox-img" style="max-width:90%; max-height:80%; margin:auto; display:block; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); border-radius:15px; box-shadow:0 10px 50px rgba(0,0,0,0.9);">
         </dialog>
 
         <div class="story-section quote-section" style="background: linear-gradient(rgba(11, 10, 16, 0.85), rgba(11, 10, 16, 0.85)), url('images/water5.jpg') center/cover fixed;">
             <div class="container">
                 <div class="quote-content" style="max-width: 900px; margin: 0 auto; text-align: center;">
-                    <div class="quote-icon" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px; opacity: 0.8;">“</div>
+                    <div class="quote-icon" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px; opacity: 0.8;">"</div>
                     <h4 class="quote-heading" style="text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin-bottom: 20px;">เสียงจากคนในพื้นที่</h4>
                     <p class="quote-text" style="font-size: 1.8rem; font-weight: 300; line-height: 1.6; color: #fff; font-style: italic;">
-                        "น้ำปีนี้มาเร็วกว่าที่คิด และระดับน้ำก็สูงกว่าเมื่อสิบปีก่อนมาก"
+                         "น้ำปีนี้มาเร็วกว่าที่คิด และระดับน้ำก็สูงกว่าเมื่อสิบปีก่อน"
                     </p>
                     <p style="margin-top: 25px; color: var(--accent); font-weight: 600; font-size: 1.1rem;">
-                        ชาวบ้าน อ.วารินชำราบ จ.อุบลราชธานี
+                         ชาวบ้าน อ.วารินชำราบ จ.อุบลราชธานี
                     </p>
                 </div>
             </div>
@@ -238,11 +238,11 @@
                     <div style="width: 50px; height: 3px; background: var(--accent); margin: 0 auto 30px auto;"></div>
                     
                     <h3 class="analysis-subtitle" style="font-size: 2.5rem; color: #fff; margin-bottom: 25px; line-height: 1.2;">
-                        ธรรมชาติเปลี่ยน หรือ <span style="color: var(--primary);">มนุษย์พลาด?</span>
+                         ธรรมชาติเปลี่ยน หรือ <span style="color: var(--primary);">มนุษย์พลาด?</span>
                     </h3>
                     
                     <p class="analysis-intro" style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; font-weight: 300;">
-                        ภาคอีสานเผชิญน้ำท่วมรุนแรงขึ้น ไม่ใช่แค่เพราะฝนมากขึ้น 
+                         ภาคอีสานเผชิญน้ำท่วมรุนแรงขึ้น ไม่ใช่แค่เพราะฝนมากขึ้น 
                         แต่เพราะภูมิทัศน์และระบบจัดการน้ำไม่ทันต่อการเปลี่ยนแปลงของสภาพภูมิอากาศ
                     </p>
                 </div>
@@ -253,7 +253,8 @@
                     <img src="images/wetland-sponge.jpg" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
                     <h4 class="card-heading" style="color: #fff; margin-bottom: 15px;">โครงสร้างพื้นฐานที่ไม่รองรับ</h4>
                     <ul class="analysis-list" style="list-style: none; padding: 0; color: #ccc; line-height: 1.6;">
-                        <li>การขยายเมืองทับพื้นที่ลุ่มต่ำ <span style="color: #FF5DA0; font-weight: bold;">ลดความจุของแก้มลิงธรรมชาติ</span> รอบลุ่มน้ำชี—มูล</li>
+                        <li>การขยายเมืองทับพื้นที่ลุ่มต่ำ ลดความจุของระบบระบายน้ำ</li>
+                        <li>ทะเลสาบและแหล่งน้ำธรรมชาติหดตัวเพราะการพัฒนา</li>
                     </ul>
                 </div>
 
@@ -261,7 +262,8 @@
                     <img src="images/rain-bomb-diagram.webp" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
                     <h4 class="card-heading" style="color: #fff; margin-bottom: 15px;">ฝนแปรปรวนฉับพลัน</h4>
                     <ul class="analysis-list" style="list-style: none; padding: 0; color: #ccc; line-height: 1.6;">
-                        <li>ป่าไม้ที่ลดลงทำให้ระบบระบายน้ำไม่สามารถรองรับ <span style="color: #FF5DA0; font-weight: bold;">ฝนตกหนักฉับพลัน (Rain Bomb)</span> ได้</li>
+                        <li>ป่าไม้ที่ลดลงทำให้ระบบระบายน้ำไม่สามารถรองรับได้</li>
+                        <li>เมืองที่มีพื้นผิวแข็งเพิ่มขึ้นทำให้น้ำหลากน้อยลง</li>
                     </ul>
                 </div>
             </div>
@@ -290,7 +292,7 @@
                                             style="border:none; width:100%; height:100%;">
                                         </iframe>
                                     </div>
-                                    <p style="margin-top: 15px; color: #fff; font-weight: 500; font-size: 0.95rem;">รศ.ดร.เสรี ศุภาราทิตย์: เสนอแนวทางการแก้ไขผังเมืองในพื้นที่ลุ่มต่ำ</p>
+                                    <p style="margin-top: 15px; color: #fff; font-weight: 500; font-size: 0.95rem;">รศ.ดร.เสรี ศุภาราทิตย์: เสนอแนวทางแก้ไข</p>
                                 </div>
 
                                 <div style="background: #1a1a1a; border-radius: 20px; overflow: hidden; padding: 15px; border: 1px solid rgba(255,255,255,0.1);">
@@ -321,10 +323,10 @@
         <div id="game-box" style="background: linear-gradient(145deg, #1a1a1a, #0f0f0f); padding: 50px; border-radius: 30px; border: 1px solid #333; box-shadow: 0 15px 30px rgba(0,0,0,0.5);">
             <div id="game-content" style="transition: opacity 0.5s ease;">
                 <p style="font-size: 1.3rem; margin-bottom: 30px; color: #eee; min-height: 80px;">
-                    "น้ำเริ่มเข้าหน้าบ้านแล้ว ระดับน้ำสูงถึงเข่า... คุณมีเวลาตัดสินใจเลือกหยิบของสำคัญ!"
+                     "น้ำเริ่มเข้าหน้าบ้านแล้ว ระดับน้ำสูงถึงเข่า... คุณมีเวลาตัดสินใจเลือกหยิบของสำคัญ!"
                 </p>
                 <div class="choice-grid" style="display: flex; flex-direction: column; gap: 15px;">
-                    <button class="game-btn" onclick="renderScene('start')" style="padding: 20px; border-radius: 15px; border: 1px solid #444; background: #ff4d4d; color: #fff; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s;">เริ่มเกมเพื่อเริ่มภารกิจ 20 ด่าน</button>
+                    <button class="game-btn" onclick="renderScene('start')" style="padding: 20px; border-radius: 15px; border: 1px solid #444; background: #ff4d4d; color: #fff; cursor: pointer; font-size: 1.1rem; transition: 0.3s;">🎮 เริ่มเกม</button>
                 </div>
             </div>
         </div>
@@ -332,32 +334,32 @@
 
     <script>
     const storyData = {
-        start: { text: "1/20: ฝนตกหนักติดต่อกัน 3 วัน น้ำล้นตลิ่งแม่น้ำชี! คุณจะทำอย่างไร?", options: [{ text: "💊 หยิบยา/ชุดปฐมพยาบาล", next: "q2" }, { text: "📱 เช็คข้อมูลแจ้งเตือนระดับน้ำ", next: "q2" }] },
-        q2: { text: "2/20: ระดับน้ำสูงถึงข้อเท้าแล้ว คุณต้องรีบขึ้นชั้น 2 ของบ้าน...", options: [{ text: "เดินขึ้นบันไดปกติ", next: "q3" }, { text: "สับคัตเอาท์ไฟก่อนขึ้น", next: "q3" }] },
+        start: { text: "1/20: ฝนตกหนักติดต่อกัน 3 วัน น้ำล้นตลิ่งแม่น้ำชี! คุณจะทำอย่างไร?", options: [{ text: "เตรียมอพยพทันที", next: "q2" }, { text: "รอดูสัญญาณจากเทศบาล", next: "q2" }] },
+        q2: { text: "2/20: ระดับน้ำสูงถึงข้อเท้าแล้ว คุณต้องรีบขึ้นชั้น 2 ของบ้าน...", options: [{ text: "พากันขึ้นไปทันที", next: "q3" }, { text: "รอเตือนอีกรอบก่อน", next: "q3" }] },
         q3: { text: "3/20: มืดแล้วไฟดับ! คุณมีไฟฉาย แต่แบตเหลือไม่ถึง 20%...", options: [{ text: "เปิดไฟฉายทิ้งไว้ตลอด", next: "q4" }, { text: "เปิดเฉพาะตอนจำเป็น", next: "q4" }] },
-        q4: { text: "4/20: เสียงแจ้งเตือนภัยดัง! กู้ภัยประกาศอพยพทันที...", options: [{ text: "รีบไปจุดรวมพล", next: "q5" }, { text: "ขออยู่เฝ้าบ้านต่อ", next: "game_over_drown" }] },
-        q5: { text: "5/20: ทางเดินไปจุดรวมพลเต็มไปด้วยน้ำและเศษไม้...", options: [{ text: "ลุยน้ำเดินไป", next: "q6" }, { text: "รอเรือกู้ภัย", next: "q6" }] },
-        q6: { text: "6/20: เจอสัตว์มีพิษ (งู) ว่ายน้ำมาทางคุณ!", options: [{ text: "ใช้ไม้เขี่ยออก", next: "q7" }, { text: "พยายามเดินหนี", next: "q7" }] },
-        q7: { text: "7/20: คุณมาถึงเรือกู้ภัย แต่เรือลำนี้คนเต็มเกินไปแล้ว...", options: [{ text: "ขอเบียดขึ้นไป", next: "q8" }, { text: "รอเรือเที่ยวถัดไป", next: "q8" }] },
+        q4: { text: "4/20: เสียงแจ้งเตือนภัยดัง! กู้ภัยประกาศอพยพทันที...", options: [{ text: "รีบไปจุดรวมพล", next: "q5" }, { text: "หยิบของสำคัญก่อน", next: "q5" }] },
+        q5: { text: "5/20: ทางเดินไปจุดรวมพลเต็มไปด้วยน้ำและเศษไม้...", options: [{ text: "ลุยน้ำเดินเร็ว", next: "q6" }, { text: "หาเส้นทางอื่นที่สูงกว่า", next: "q6" }] },
+        q6: { text: "6/20: เจอสัตว์มีพิษ (งู) ว่ายน้ำมาทางคุณ!", options: [{ text: "ใช้ไม้เขี่ยออก", next: "q7" }, { text: "ลงน้ำหลีกหนี", next: "game_over_drown" }] },
+        q7: { text: "7/20: คุณมาถึงเรือกู้ภัย แต่เรือลำนี้คนเต็มเกินไปแล้ว...", options: [{ text: "ขอนั่งริมเรือ", next: "q8" }, { text: "ว่ายน้ำตามเรือ", next: "game_over_drown" }] },
         q8: { text: "8/20: ระหว่างอยู่บนเรือ น้ำพัดแรงมาก เรือสั่นคลอน...", options: [{ text: "เกาะขอบเรือแน่นๆ", next: "q9" }, { text: "ยืนขึ้นเพื่อทรงตัว", next: "game_over_fall" }] },
         q9: { text: "9/20: เพื่อนบ้านข้างๆ เริ่มเป็นตะคริวเพราะแช่น้ำนาน...", options: [{ text: "ช่วยพยุงไว้", next: "q10" }, { text: "ตะโกนเรียกกู้ภัย", next: "q10" }] },
-        q10: { text: "10/20: ครึ่งทางแล้ว! กู้ภัยต้องการแรงคนช่วยพายเรือต่อ...", options: [{ text: "ช่วยพาย", next: "q11" }, { text: "นั่งเฉยๆ ให้กู้ภัยทำ", next: "q11" }] },
-        q11: { text: "11/20: เจอสายไฟหลุดแช่อยู่ในน้ำข้างๆ เรือ!", options: [{ text: "บอกคนพายให้หลบ", next: "q12" }, { text: "ไม่สนใจ รีบไปต่อ", next: "game_over_shock" }] },
-        q12: { text: "12/20: ท้องเริ่มหิวมาก คุณมีเสบียงเพียงพอสำหรับ 1 มื้อ...", options: [{ text: "กินตอนนี้เลย", next: "q13" }, { text: "เก็บไว้มื้อหน้า", next: "q13" }] },
-        q13: { text: "13/20: พายุฝนเริ่มลงหนักอีกรอบ ทัศนวิสัยเป็นศูนย์...", options: [{ text: "หาที่หลบในเพิงริมน้ำ", next: "q14" }, { text: "ไปต่อท่ามกลางฝน", next: "q14" }] },
-        q14: { text: "14/20: เจอด่านทหารเตรียมเสบียงและผ้าห่มให้...", options: [{ text: "รับผ้าห่ม/น้ำ", next: "q15" }, { text: "รีบไปต่อไม่หยุด", next: "q15" }] },
-        q15: { text: "15/20: คุณเริ่มมีอาการไข้เพราะแช่น้ำนานเกินไป...", options: [{ text: "กินยาที่เตรียมมา", next: "q16" }, { text: "ทนเอา เดี๋ยวก็ถึง", next: "q16" }] },
-        q16: { text: "16/20: เจอนักข่าวถ่ายทำสถานการณ์น้ำท่วม คุณจะทำอย่างไร?", options: [{ text: "ขอความช่วยเหลือ", next: "q17" }, { text: "เลี่ยงไม่ให้เห็น", next: "q17" }] },
-        q17: { text: "17/20: น้ำเริ่มลดระดับลงบ้างแล้ว แต่ทางเดินเต็มไปด้วยโคลนลื่น...", options: [{ text: "เดินเท้าต่อ", next: "q18" }, { text: "รอรถยกสูงมา", next: "q18" }] },
-        q18: { text: "18/20: เห็นประกาศจากศูนย์อพยพว่าพื้นที่นี้ปลอดภัยแล้ว...", options: [{ text: "ไปที่ศูนย์ฯ", next: "q19" }, { text: "จะกลับบ้านเลย", next: "game_over_unsafe" }] },
-        q19: { text: "19/20: ถึงศูนย์อพยพแล้ว! สิ่งแรกที่ควรทำคืออะไร?", options: [{ text: "ลงทะเบียนรับความช่วยเหลือ", next: "q20" }, { text: "หาที่นอนก่อน", next: "q20" }] },
-        q20: { text: "20/20: คุณรอดมาได้! บทเรียนที่สำคัญที่สุดจากเหตุการณ์นี้คืออะไร?", options: [{ text: "การเตรียมพร้อม", next: "win" }, { text: "ความร่วมมือ", next: "win" }] },
+        q10: { text: "10/20: ครึ่งทางแล้ว! กู้ภัยต้องการแรงคนช่วยพายเรือต่อ...", options: [{ text: "ช่วยพายเรือ", next: "q11" }, { text: "นั่งพักตัว", next: "q11" }] },
+        q11: { text: "11/20: เจอสายไฟหลุดแช่อยู่ในน้ำข้างๆ เรือ!", options: [{ text: "บอกคนพายให้หลบ", next: "q12" }, { text: "พยายามปิดไฟด้วยตัวเอง", next: "game_over_shock" }] },
+        q12: { text: "12/20: ท้องเริ่มหิวมาก คุณมีเสบียงเพียงพอสำหรับ 1 มื้อ...", options: [{ text: "กินครึ่งแล้วเก็บไว้", next: "q13" }, { text: "แบ่งให้เพื่อนบ้าน", next: "q13" }] },
+        q13: { text: "13/20: พายุฝนเริ่มลงหนักอีกรอบ ทัศนวิสัยเป็นศูนย์...", options: [{ text: "หาที่หลังเรือให้ปลอดภัย", next: "q14" }, { text: "ยืนขึ้นดูเส้นทาง", next: "game_over_fall" }] },
+        q14: { text: "14/20: เจอด่านทหารเตรียมเสบียงและผ้าห่มให้...", options: [{ text: "รับผ้าห่ม/น้ำดื่ม", next: "q15" }, { text: "ปฏิเสธ บอกว่าพอ", next: "q15" }] },
+        q15: { text: "15/20: คุณเริ่มมีอาการไข้เพราะแช่น้ำนานเกินไป...", options: [{ text: "กินยาที่เตรียมไว้", next: "q16" }, { text: "ทำอะไรไม่ได้ นอนพักแบ", next: "q16" }] },
+        q16: { text: "16/20: เจอนักข่าวถ่ายทำสถานการณ์น้ำท่วม คุณจะทำอย่างไร?", options: [{ text: "ให้สัมภาษณ์เล่าประสบการณ์", next: "q17" }, { text: "ปฏิเสธสัมภาษณ์", next: "q17" }] },
+        q17: { text: "17/20: น้ำเริ่มลดระดับลงบ้างแล้ว แต่ทางเดินเต็มไปด้วยโคลนลื่น...", options: [{ text: "ลุยโคลนกลับบ้าน", next: "q18" }, { text: "รอกู้ภัยกลับบ้านแทน", next: "q18" }] },
+        q18: { text: "18/20: เห็นประกาศจากศูนย์อพยพว่าพื้นที่นี้ปลอดภัยแล้ว...", options: [{ text: "ไปกลับบ้านตอนนี้เลย", next: "game_over_unsafe" }, { text: "อยู่พอเมื่อน้ำลดลงมากกว่านี้", next: "q19" }] },
+        q19: { text: "19/20: ถึงศูนย์อพยพแล้ว! สิ่งแรกที่ควรทำคืออะไร?", options: [{ text: "ลงทะเบียนชื่อ", next: "q20" }, { text: "หาห้องพักที่ดี", next: "q20" }] },
+        q20: { text: "20/20: คุณรอดมาได้! บทเรียนที่สำคัญที่สุดจากเหตุการณ์นี้คืออะไร?", options: [{ text: "ความเตรียมตัวล่วงหน้า", next: "win" }, { text: "การช่วยเหลือเพื่อนบ้าน", next: "win" }] },
         
-        win: { text: "🎉 ยินดีด้วย! คุณรอดพ้นวิกฤตด้วยไหวพริบและการตัดสินใจที่ดีเยี่ยม! คุณคือ Survivor ตัวจริง", options: [{ text: "เริ่มเล่นใหม่", next: "start" }] },
+        win: { text: "🎉 ยินดีด้วย! คุณรอดพ้นวิกฤตด้วยไหวพริบและการตัดสินใจที่ดีเยี่ยม! ความรู้ของคุณอาจช่วยชีวิตผู้อื่นได้", options: [{ text: "เล่นใหม่อีกครั้ง", next: "start" }] },
         game_over_drown: { text: "⚠️ คุณอยู่ต่อจนน้ำท่วมสูงเกินกว่าจะหนีทัน... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] },
         game_over_fall: { text: "⚠️ เรือคว่ำ! คุณตกลงไปในน้ำเชี่ยว... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] },
         game_over_shock: { text: "⚠️ ไฟฟ้าดูด! เพราะความประมาท... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] },
-        game_over_unsafe: { text: "⚠️ กลับบ้านเร็วเกินไป บ้านยังไม่ปลอดภัย... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] }
+        game_over_unsafe: { text: "⚠️ กลับบ้านเร็วเกินไป บ้านยังไม่ปลอดภัย... เกมจบ!", options: [{ text: "ลองใหม่อีกครั้ง", next: "start" }] },
     };
 
     function renderScene(sceneId) {
@@ -404,7 +406,7 @@
 </section>
     <footer class="site-footer" style="padding: 80px 20px; border-top: 1px solid var(--primary); background: linear-gradient(to bottom, #050505, #0a0a1a);">
     <div class="container" style="max-width: 900px; text-align: center;">
-        
+         
         <h4 style="color: var(--accent); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; font-size: 1.2rem;">ทีมผู้พัฒนา</h4>
         <div class="authors-list" style="display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; font-size: 1.2rem; font-weight: 600;">
             <span>สิรภพ ฉัตรพูนกุล</span>
@@ -420,7 +422,7 @@
         </div>
 
         <div style="color: var(--text-muted); font-size: 0.9rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-            <p style="margin-bottom: 15px;">ศูนย์สร้างสรรค์สื่อเพื่อสาธารณะ มหาวิทยาลัยมหาสารคาม ร่วมกับ สำนักเครือข่ายและการมีส่วนร่วมสาธารณะ ไทยพีบีเอส</p>
+            <p style="margin-bottom: 15px;">ศูนย์สร้างสรรค์สื่อเพื่อสาธารณะ มหาวิทยาลัยมหาสารคาม</p>
             <p style="color: rgba(255,255,255,0.3); font-size: 0.8rem;">&copy; 2026 Longform Article Project</p>
         </div>
     </div>
