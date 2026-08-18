@@ -31,7 +31,19 @@
              <p class="hero-desc">10 ปีผ่านไป...ทำไมแผ่นดินที่ราบสูงของคนน้ำ? ร่วมสำรวจรากเหง้าของปัญหา หาทางออกที่ทุกคนมีส่วนร่วม</p>
             <button class="scroll-down-btn">เริ่มต้นการสำรวจ</button>
         </div>
-    </header> 
+    </header>
+
+    <script>
+        window.addEventListener('load', function () {
+            const heroVideo = document.getElementById('hero-video-bg');
+            if (!heroVideo) return;
+            heroVideo.muted = true;
+            heroVideo.playsInline = true;
+            heroVideo.play().catch(function () {
+                heroVideo.pause();
+            });
+        });
+    </script>
 
     <section id="section-1" class="story-section interactive-map-section">
     <!-- 1. ส่วนหัวและ Timeline -->
