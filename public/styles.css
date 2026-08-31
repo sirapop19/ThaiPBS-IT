@@ -342,8 +342,7 @@ h1, h2, h3, h4, h5, .timeline-btn, .scroll-down-btn {
 }
 
 .gallery-slide-item {
-    flex: 1 0 auto;
-    width: 100%;
+    flex: 0 0 calc(33.333% - 17px);
     height: 220px;
     scroll-snap-align: center;
     border-radius: 18px;
@@ -474,6 +473,22 @@ dialog::backdrop {
     padding: 60px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     text-align: center;
+}
+
+/* =========================================
+   SWIPER PHOTO GALLERY STYLING
+   ========================================= */
+.photoSwiper {
+    overflow: visible;
+}
+
+.photoSwiper .swiper-wrapper {
+    display: flex;
+}
+
+.photoSwiper .swiper-slide {
+    display: flex;
+    align-items: stretch;
 }
 
 .footer-heading {
@@ -674,17 +689,6 @@ dialog::backdrop {
     .photoSwiper .swiper-button-next { right: 10px !important; }
   }
 
-  .gallery-slide-item {
-    width: 400px;
-    height: 300px;
-    transition: transform 0.5s ease;
-    border-radius: 20px;
-    overflow: hidden;
-    /* เพิ่มเงาขนาดใหญ่เพื่อให้ภาพดูนูนลอยออกมา */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 
-                inset 0 0 10px rgba(255, 255, 255, 0.1);
-  }
-
   /* ปรับเงาปุ่มให้ชัดขึ้น */
   .swiper-button-next, .swiper-button-prev {
     background: rgba(30, 58, 138, 0.8) !important; /* ใช้สีน้ำเงินตามธีม 60-30-10 */
@@ -705,6 +709,23 @@ dialog::backdrop {
 @keyframes rainFall {
     0% { transform: translateY(-10vh); }
     100% { transform: translateY(110vh); }
+}
+
+/* =========================================
+   RESPONSIVE GALLERY SLIDESHOW
+   ========================================= */
+@media (max-width: 768px) {
+    .gallery-slide-item {
+        flex: 0 0 calc(50% - 12px) !important;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-slide-item {
+        flex: 0 0 calc(100% - 0px) !important;
+        height: 200px;
+    }
 }
 
 /* =========================================
