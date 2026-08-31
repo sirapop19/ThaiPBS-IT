@@ -21,7 +21,7 @@
     </div>
     
     <header class="hero-section" style="position: relative; overflow: hidden; background: #050b18;">
-        <video autoplay muted loop playsinline id="hero-video-bg" preload="auto" poster="images/water5.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 1; pointer-events: none; filter: brightness(0.7) saturate(1.1);">
+        <video autoplay muted loop playsinline id="hero-video-bg" preload="auto" crossorigin="anonymous" poster="images/water5.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 1; pointer-events: none; filter: brightness(0.7) saturate(1.1);">
             <source src="video/CL3.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay" style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(135deg, rgba(4, 10, 22, 0.15) 0%, rgba(2, 6, 23, 0.5) 100%);"></div> 
@@ -34,15 +34,38 @@
     </header>
 
     <script>
-        window.addEventListener('load', function () {
+        function autoplayHeroVideo() {
             const heroVideo = document.getElementById('hero-video-bg');
             if (!heroVideo) return;
+            
             heroVideo.muted = true;
             heroVideo.playsInline = true;
-            heroVideo.play().catch(function () {
-                heroVideo.pause();
-            });
-        });
+            
+            // Try to play immediately
+            const playPromise = heroVideo.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log('✓ Background video autoplay successful');
+                    })
+                    .catch(error => {
+                        console.warn('⚠ Autoplay failed, will retry on user interaction:', error.message);
+                        // Retry on user interaction
+                        document.addEventListener('click', () => heroVideo.play(), { once: true });
+                        document.addEventListener('touchstart', () => heroVideo.play(), { once: true });
+                    });
+            }
+        }
+        
+        // Try on DOMContentLoaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', autoplayHeroVideo);
+        } else {
+            autoplayHeroVideo();
+        }
+        
+        // Also try on window load
+        window.addEventListener('load', autoplayHeroVideo);
     </script>
 
     <section id="section-1" class="story-section interactive-map-section">
