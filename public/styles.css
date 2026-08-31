@@ -635,78 +635,42 @@ dialog::backdrop {
     border-radius: 10px;
 }
 
-.photoSwiper {
-    width: 100%;
-    max-width: 850px;
-    margin: 0 auto;
-    overflow: visible !important;
-  }
-  
-  .photoSwiper .gallery-slide-item {
-    width: 400px;
-    height: 280px; 
-    border-radius: 16px;
-    overflow: hidden;
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-    cursor: pointer;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
-  }
-  
-  .photoSwiper .swiper-slide-active {
-    border-color: #3b82f6 !important; 
-    box-shadow: 0 25px 50px rgba(59, 130, 246, 0.25) !important;
-  }
-  
-  .photoSwiper .thumbnail-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .photoSwiper .swiper-button-next, 
-  .photoSwiper .swiper-button-prev {
-    color: #ffffff !important;
-    background: rgba(30, 58, 138, 0.9) !important;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid rgba(59, 130, 246, 0.5);
-    backdrop-filter: blur(4px);
-    transition: all 0.3s ease;
-  }
-  
-  .photoSwiper .swiper-button-prev {
-    left: -70px !important;
-  }
-  .photoSwiper .swiper-button-next {
-    right: -70px !important;
-  }
+/* บังคับกล่องสไลด์ให้อยู่ตรงกลาง และไม่กว้างจนเกินไป */
+    .photoSwiper {
+        width: 100%;
+        max-width: 1100px; /* จำกัดความกว้างไม่ให้เหลือขอบขวา */
+        margin: 0 auto !important; /* ดึงกล่องมาอยู่ตรงกลางจอ */
+        padding: 40px 60px !important; 
+    }
+    
+    /* ตั้งค่าขนาดของแต่ละสไลด์ */
+    .photoSwiper .swiper-slide {
+        width: 350px !important; 
+        height: 250px !important; 
+        border-radius: 15px;
+        overflow: hidden;
+        background: #000;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s ease;
+    }
+    
+    /* บังคับรูปภาพให้เต็มกรอบโดยสัดส่วนไม่เพี้ยน */
+    .photoSwiper .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        display: block;
+    }
 
-  .photoSwiper .swiper-button-next:after, 
-  .photoSwiper .swiper-button-prev:after {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
-  .photoSwiper .swiper-button-next:hover, 
-  .photoSwiper .swiper-button-prev:hover {
-    background: #3b82f6 !important;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-  }
-  
-  .photoSwiper .swiper-pagination-bullet {
-    background: #f8fafc !important;
-    opacity: 0.3;
-    transition: all 0.3s ease;
-  }
-  .photoSwiper .swiper-pagination-bullet-active {
-    background: #3b82f6 !important;
-    opacity: 1;
-    width: 22px; 
-    border-radius: 6px;
-  }
+    /* จัดตำแหน่งปุ่มลูกศร */
+    .photoSwiper .swiper-button-next {
+        right: 10px;
+        color: var(--primary);
+    }
+    .photoSwiper .swiper-button-prev {
+        left: 10px;
+        color: var(--primary);
+    }
 
   @media (max-width: 992px) {
     .photoSwiper .swiper-button-prev { left: 10px !important; }
