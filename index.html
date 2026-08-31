@@ -220,12 +220,22 @@
         <script>
         var photoSwiper = new Swiper(".photoSwiper", {
     grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    spaceBetween: 30,
-    centeredSlides: true,
+    centeredSlides: false,
+    slidesPerView: 3,
+    spaceBetween: 25,
     loop: true,
     allowTouchMove: true,
+    breakpoints: {
+        0: {
+            slidesPerView: 1.2,
+        },
+        640: {
+            slidesPerView: 1.8,
+        },
+        1024: {
+            slidesPerView: 3,
+        }
+    },
     navigation: {
         nextEl: ".photoSwiper .swiper-button-next",
         prevEl: ".photoSwiper .swiper-button-prev",
