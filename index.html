@@ -196,19 +196,13 @@
 
         <script>
         var photoSwiper = new Swiper(".photoSwiper", {
-    effect: "coverflow",
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
+    spaceBetween: 30,
+    centeredSlides: true,
     loop: true,
     allowTouchMove: true,
-    coverflowEffect: {
-        rotate: 45,
-        stretch: -20,
-        depth: 250,
-        modifier: 1,
-        slideShadows: true,
-    },
     navigation: {
         nextEl: ".photoSwiper .swiper-button-next",
         prevEl: ".photoSwiper .swiper-button-prev",
@@ -416,38 +410,44 @@
     </section>
 
 </section>
-    <footer class="site-footer" style="padding: 80px 20px 60px; border-top: 1px solid var(--primary); background: linear-gradient(to bottom, #050505, #0a0a1a);">
-    <div class="container" style="max-width: 1100px; text-align: center;">
-        <h4 style="color: var(--accent); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; font-size: 1.3rem;">ทีมผู้พัฒนา</h4>
-
-        <div class="team-grid" style="display: grid; grid-template-columns: repeat(3, minmax(200px, 1fr)); gap: 28px; margin: 0 auto 50px; max-width: 980px;">
-            <div style="padding: 18px 14px; border-radius: 18px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 12px 28px rgba(0,0,0,0.18);">
-                <div style="font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-bottom: 6px;">สิรภพ ฉัตรพูนกุล</div>
-                <div style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Mr. Sirapop Chatpoongule</div>
+    
+    <!-- 🟢 ส่วน Footer ที่แก้ไขปัญหาการปัดตก (Wrap) -->
+    <footer class="site-footer" style="padding: 50px 30px; border-top: 1px solid rgba(255,255,255,0.1); background: linear-gradient(to bottom, #050505, #0a0a1a); font-family: sans-serif;">
+        <div class="footer-layout" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 40px;">
+            
+            <!-- ด้านซ้าย: โลโก้ และ ชื่อโปรเจกต์ -->
+            <div class="footer-left" style="display: flex; align-items: center; gap: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <img src="images/logo_thaipbs.png" height="40" alt="Thai PBS" style="object-fit: contain;">
+                    <img src="images/logo_thaipbs_locals.png" height="40" alt="Thai PBS Locals" style="object-fit: contain;">
+                    <img src="images/logo_msu.png" height="50" alt="MSU" style="object-fit: contain;">
+                    <img src="images/logo_it_msu.png" height="50" alt="IT MSU" style="object-fit: contain;">
+                </div>
+                
+                <!-- เส้นคั่นแนวตั้ง -->
+                <div class="footer-divider" style="width: 1px; height: 50px; background-color: rgba(255,255,255,0.2);"></div>
+                
+                <!-- ชื่อเรื่อง -->
+                <div class="footer-title" style="line-height: 1.4; white-space: nowrap;">
+                    <div style="font-size: 1.25rem; font-weight: 700; color: #ffffff;">CTRUE</div>
+                    <div style="font-size: 0.95rem; color: rgba(255,255,255,0.6);">อีสานแล้ง VS น้ำท่วม</div>
+                </div>
             </div>
-            <div style="padding: 18px 14px; border-radius: 18px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 12px 28px rgba(0,0,0,0.18);">
-                <div style="font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-bottom: 6px;">เฉลิมเกียรติ นาริโพธิ์</div>
-                <div style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Mr. Chaloemkiad Naripho</div>
-            </div>
-            <div style="padding: 18px 14px; border-radius: 18px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 12px 28px rgba(0,0,0,0.18);">
-                <div style="font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-bottom: 6px;">ศักรินทร์ พันธ์น้อย</div>
-                <div style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Mr. Sakkarin Pannoy</div>
-            </div>
-        </div>
 
-        <div class="logo-partners" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 24px; margin-bottom: 40px;">
-            <img src="images/logo_msu.png" height="52" style="opacity: 0.8; transition: 0.3s; filter: grayscale(0.2);">
-            <img src="images/logo_it_msu.png" height="52" style="opacity: 0.8; transition: 0.3s; filter: grayscale(0.2);">
-            <img src="images/logo_thaipbs.png" height="52" style="opacity: 0.8; transition: 0.3s; filter: grayscale(0.2);">
-            <img src="images/logo_thaipbs_locals.png" height="52" style="opacity: 0.8; transition: 0.3s; filter: grayscale(0.2);">
+            <!-- ด้านขวา: ข้อความเครดิตและทีมผู้พัฒนา (จำกัดความกว้างไม่ให้ดันฝั่งซ้ายตก) -->
+            <div class="footer-right" style="text-align: right; color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.6; max-width: 550px;">
+                <div>ศูนย์สร้างสรรค์สื่อเพื่อสาธารณะ มหาวิทยาลัยมหาสารคาม ร่วมกับ </div>
+                <div>สำนักเครือข่ายและการมีส่วนร่วมสาธารณะ Thai PBS</div>
+                <div>&copy; 2026 Longform Article Project</div>
+                <div style="margin-top: 10px; color: rgba(255,255,255,0.8);">Development Team</div>
+                <div>สิรภพ ฉัตรพูนกุล (Sirapop Chatpoongule)</div>
+                <div>เฉลิมเกียรติ นาริโพธิ์ (Chaloemkiad Naripho)</div>
+                <div>ศักรินทร์ พันธ์น้อย (Sakkarin Pannoy)</div>
+            </div>
+            
         </div>
+    </footer>
 
-        <div style="color: var(--text-muted); font-size: 0.95rem; max-width: 700px; margin: 0 auto; line-height: 1.7;">
-            <p style="margin-bottom: 15px;">ศูนย์สร้างสรรค์สื่อเพื่อสาธารณะ มหาวิทยาลัยมหาสารคาม ร่วมกับ สำนักเครือข่ายและการมีส่วนร่วมสาธารณะ ไทยพีบีเอส</p>
-            <p style="color: rgba(255,255,255,0.3); font-size: 0.8rem;">&copy; 2026 Longform Article Project</p>
-        </div>
-    </div>
-</footer>
     <script>
     var swiper = new Swiper(".mySwiper", {
         effect: "coverflow",
@@ -473,12 +473,27 @@
     });
     </script>
     <style>
-        .swiper-slide {
-            width: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #000;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+        @media (max-width: 1024px) {
+            .footer-layout {
+                flex-direction: column !important;
+                justify-content: center !important;
+                text-align: center;
+                gap: 25px !important;
+            }
+            .footer-left {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            .footer-title {
+                white-space: normal !important;
+            }
+            .footer-divider {
+                display: none;
+            }
+            .footer-right {
+                text-align: center !important;
+                max-width: 100% !important;
+            }
         }
     </style>
     <script src="script.js"></script>
