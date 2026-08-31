@@ -167,10 +167,11 @@ h1, h2, h3, h4, h5, .timeline-btn, .scroll-down-btn {
    3. SECTIONS & GENERAL LAYOUT 
    ========================================================================== */
 .story-section {
-    padding: 80px 0;
+    padding: 120px 0 80px 0;
     position: relative;
     background-color: var(--bg-dark); 
     z-index: 15; 
+    margin-top: 40px;
 }
 
 .section-title-center, .section-header-dark h3 {
@@ -198,10 +199,11 @@ h1, h2, h3, h4, h5, .timeline-btn, .scroll-down-btn {
 }
 
 .section-header-dark {
-    padding-top: 100px !important;
+    padding-top: 60px !important;
     padding-bottom: 50px; 
     color: white;
-    z-index: 5; 
+    z-index: 5;
+    background: linear-gradient(180deg, transparent 0%, rgba(5, 5, 5, 0.5) 50%, var(--bg-dark) 100%);
 }
 
 #timeline-slider {
