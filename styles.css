@@ -709,3 +709,34 @@ dialog::backdrop {
     0% { transform: translateY(-10vh); }
     100% { transform: translateY(110vh); }
 }
+
+/* =========================================
+       แก้ไขสัดส่วนวิดีโอ YouTube (mySwiper) 
+       ========================================= */
+    
+    /* บังคับกล่องสไลด์วิดีโอให้เป็นสัดส่วน 16:9 */
+    .mySwiper .swiper-slide {
+        width: 550px !important; /* กำหนดความกว้างของสไลด์วิดีโอ */
+        aspect-ratio: 16 / 9 !important; /* บังคับสัดส่วนให้พอดีกับ YouTube */
+        height: auto !important; /* ปล่อยความสูงให้คำนวณอัตโนมัติตามสัดส่วน */
+        border-radius: 15px;
+        overflow: hidden;
+        background: #000;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s ease;
+    }
+
+    /* บังคับ iframe ให้กางเต็มกล่องสไลด์ 100% */
+    .mySwiper .swiper-slide iframe {
+        width: 100% !important;
+        height: 100% !important;
+        border: none;
+        display: block;
+    }
+
+    /* ปรับขนาดให้เล็กลงเมื่อเปิดบนหน้าจอมือถือ */
+    @media (max-width: 768px) {
+        .mySwiper .swiper-slide {
+            width: 320px !important;
+        }
+    }
